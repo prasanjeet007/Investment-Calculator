@@ -1,6 +1,6 @@
 import React from "react";
 import "./table.css";
-export default function Table() {
+export default function Table({ data }) {
   return (
     <table className="result">
       <thead>
@@ -14,11 +14,11 @@ export default function Table() {
       </thead>
       <tbody>
         <tr>
-          <td>YEAR NUMBER</td>
-          <td>TOTAL SAVINGS END OF YEAR</td>
-          <td>INTEREST GAINED IN YEAR</td>
-          <td>TOTAL INTEREST GAINED</td>
-          <td>TOTAL INVESTED CAPITAL</td>
+          <td>{data?.year}</td>
+          <td>{data?.savingsEndOfYear}</td>
+          <td>{data?.yearlyInterest}</td>
+          <td>{data?.yearlyInterest + data?.savingsEndOfYear}</td>
+          <td>{data?.yearlyContribution}</td>
         </tr>
       </tbody>
     </table>

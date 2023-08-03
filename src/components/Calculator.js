@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./calculator.css";
 
-export default function Calculator() {
+export default function Calculator({ calculate }) {
   const [formState, setFormState] = useState({
     currentSavings: "",
     yearlyContribution: "",
@@ -9,7 +9,7 @@ export default function Calculator() {
     duration: "",
   });
   const submitHandler = (e) => {
-    console.log(formState);
+    calculate(formState);
     e.preventDefault();
   };
   const resetHandler = () => {
