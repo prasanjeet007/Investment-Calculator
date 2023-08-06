@@ -5,6 +5,7 @@ import Table from "./components/Table";
 
 function App() {
   const [result, setResult] = useState(null);
+  const [currentSavings, setCurrentSavings] = useState(null);
   const calculateHandler = (userInput) => {
     // Should be triggered when form is submitted
     // You might not directly want to bind it to the submit event on the form though...
@@ -20,6 +21,7 @@ function App() {
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;
       currentSavings += yearlyInterest + yearlyContribution;
+      setCurrentSavings(currentSavings);
       yearlyData.push({
         // feel free to change the shape of the data pushed to the array!
         year: i + 1,
@@ -35,9 +37,13 @@ function App() {
     <div>
       <Header />
       <Calculator calculate={calculateHandler} />
-      {result?.length > 0
-        ? result.map((resultData, i) => <Table key={i} data={resultData} />)
-        : "No Data Available"}
+      {result?.length > 0 ? (
+        result.map((resultData, i) => (
+          <Table key={i} data={resultData} investment={currentSavings} />
+        ))
+      ) : (
+        <h3 className="no-data">No Data Available</h3>
+      )}
     </div>
   );
 }

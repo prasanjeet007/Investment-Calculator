@@ -34,7 +34,7 @@ export default function Calculator({ calculate }) {
               setFormState((prevState) => {
                 return {
                   ...prevState,
-                  currentSavings: e.target.value,
+                  currentSavings: +e.target.value,
                 };
               })
             }
@@ -50,7 +50,7 @@ export default function Calculator({ calculate }) {
               setFormState((prevState) => {
                 return {
                   ...prevState,
-                  yearlyContribution: e.target.value,
+                  yearlyContribution: +e.target.value,
                 };
               })
             }
@@ -70,7 +70,7 @@ export default function Calculator({ calculate }) {
               setFormState((prevState) => {
                 return {
                   ...prevState,
-                  expectedReturn: e.target.value,
+                  expectedReturn: +e.target.value,
                 };
               })
             }
@@ -86,7 +86,7 @@ export default function Calculator({ calculate }) {
               setFormState((prevState) => {
                 return {
                   ...prevState,
-                  duration: e.target.value,
+                  duration: +e.target.value,
                 };
               })
             }

@@ -1,6 +1,12 @@
 import React from "react";
 import "./table.css";
-export default function Table({ data }) {
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+export default function Table({ data, investment }) {
   return (
     <table className="result">
       <thead>
@@ -15,10 +21,16 @@ export default function Table({ data }) {
       <tbody>
         <tr>
           <td>{data?.year}</td>
-          <td>{data?.savingsEndOfYear}</td>
-          <td>{data?.yearlyInterest}</td>
-          <td>{data?.yearlyInterest + data?.savingsEndOfYear}</td>
-          <td>{data?.yearlyContribution}</td>
+          <td>{formatter.format(data?.savingsEndOfYear)}</td>
+          <td>{formatter.format(data?.yearlyInterest)}</td>
+          <td>
+            {formatter.format(
+              data?.savingsEndOfYear -
+                investment -
+                data?.yearlyContribution * data?.year
+            )}
+          </td>
+          <td>{formatter.format(investment + data?.yearlyContribution)}</td>
         </tr>
       </tbody>
     </table>
